@@ -104,43 +104,7 @@ INSERT INTO produtos (nome, quantidade, estoque_minimo) VALUES
   ('000 (meia meia meia de cano invisível)', 25, 12)
 ON CONFLICT DO NOTHING;
 
--- Movimentações (histórico inicial)
--- Entradas iniciais (Ana)
-INSERT INTO movimentacoes (produto_id, usuario_id, tipo, quantidade, data_movimentacao, observacao) VALUES
-  ((SELECT id FROM produtos WHERE nome='meia meia meia arrastão'),
-   (SELECT id FROM usuarios WHERE email='ana@example.com'),
-   'entrada', 30, NOW() - INTERVAL '2 days', 'Compra inicial'),
-  ((SELECT id FROM produtos WHERE nome='499,5 (meia meia meia 3/4)'),
-   (SELECT id FROM usuarios WHERE email='ana@example.com'),
-   'entrada', 50, NOW() - INTERVAL '2 days', 'Compra inicial'),
-  ((SELECT id FROM produtos WHERE nome='000 (meia meia meia de cano invisível)'),
-   (SELECT id FROM usuarios WHERE email='ana@example.com'),
-   'entrada', 20, NOW() - INTERVAL '2 days', 'Compra inicial');
 
--- Saídas (Bruno)
-INSERT INTO movimentacoes (produto_id, usuario_id, tipo, quantidade, data_movimentacao, observacao) VALUES
-  ((SELECT id FROM produtos WHERE nome='meia meia meia arrastão'),
-   (SELECT id FROM usuarios WHERE email='bruno@example.com'),
-   'saida', 6, NOW() - INTERVAL '1 day', 'Retirada para evento'),
-  ((SELECT id FROM produtos WHERE nome='499,5 (meia meia meia 3/4)'),
-   (SELECT id FROM usuarios WHERE email='bruno@example.com'),
-   'saida', 15, NOW() - INTERVAL '1 day', 'Retirada para feira'),
-  ((SELECT id FROM produtos WHERE nome='000 (meia meia meia de cano invisível)'),
-   (SELECT id FROM usuarios WHERE email='bruno@example.com'),
-   'saida', 4, NOW() - INTERVAL '1 day', 'Retirada para divulgação');
-
--- Reposição (Carla)
-INSERT INTO movimentacoes (produto_id, usuario_id, tipo, quantidade, observacao) VALUES
-  ((SELECT id FROM produtos WHERE nome='meia meia meia arrastão'),
-   (SELECT id FROM usuarios WHERE email='carla@example.com'),
-   'entrada', 10, 'Devolução de kits'),
-  ((SELECT id FROM produtos WHERE nome='499,5 (meia meia meia 3/4)'),
-   (SELECT id FROM usuarios WHERE email='carla@example.com'),
-   'entrada', 20, 'Devolução de kits'),
-  ((SELECT id FROM produtos WHERE nome='000 (meia meia meia de cano invisível)'),
-   (SELECT id FROM usuarios WHERE email='carla@example.com'),
-   'entrada', 8, 'Devolução de kits');
-```
 
 ---
 
